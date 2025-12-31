@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sarvavid-vairocana.github.io/death-preparation-guide/sitemap.xml
