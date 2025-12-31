@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Preparation Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e0e6ed;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #1a365d;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #cbd5e0;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin: 2rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            color: #4a5568;
+        }
+        
+        .intro {
+            background: #f7fafc;
+            padding: 2rem;
+            border-left: 4px solid #667eea;
+            margin-bottom: 2.5rem;
+            border-radius: 4px;
+        }
+        
+        .intro p {
+            margin-bottom: 1rem;
+        }
+        
+        .intro p:last-child {
+            margin-bottom: 0;
+        }
+        
+        ul {
+            margin: 1rem 0 1.5rem 2rem;
+            list-style-type: none;
+        }
+        
+        ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #4a5568;
+        }
+        
+        ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .questions {
+            background: #fffbeb;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .questions h3 {
+            color: #92400e;
+            margin-top: 0;
+        }
+        
+        .questions ul {
+            margin-left: 0;
+        }
+        
+        .questions ul li:before {
+            color: #f59e0b;
+        }
+        
+        .layers {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .layer {
+            background: white;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .layer:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+        
+        .layer-number {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 2rem;
+            margin-right: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .layer h3 {
+            display: inline;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .layer p {
+            margin-top: 1rem;
+            margin-left: 2.75rem;
+        }
+        
+        .note {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+        
+        .note p {
+            color: #065f46;
+            margin-bottom: 0;
+        }
+        
+        .layer {
+            cursor: pointer;
+        }
+        
+        .layer:active {
+            transform: scale(0.98);
+        }
+        
+        .aside-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+        
+        .aside-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .aside-panel {
+            position: fixed;
+            top: 0;
+            right: -600px;
+            width: 600px;
+            max-width: 90vw;
+            height: 100%;
+            background: white;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 3rem;
+        }
+        
+        .aside-panel.active {
+            right: 0;
+        }
+        
+        .aside-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .aside-title {
+            font-size: 1.8rem;
+            color: #1a365d;
+            margin: 0;
+        }
+        
+        .close-btn {
+            background: #e2e8f0;
+            border: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        
+        .close-btn:hover {
+            background: #cbd5e0;
+            transform: rotate(90deg);
+        }
+        
+        .aside-content h3 {
+            color: #2d3748;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .aside-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .aside-content ul {
+            margin-left: 0;
+        }
+        
+        .aside-content .question-group {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+        
+        .aside-content .question-group h4 {
+            color: #4a5568;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .aside-content .question-group ul {
+            margin-top: 0.5rem;
+        }
+        
+        .aside-content .note-section {
+            background: #fffbeb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            margin-top: 2rem;
+        }
+        
+        .aside-content .note-section p {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .aside-content .note-section p:last-child {
+            margin-bottom: 0;
+        }
+        
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e6ed;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 1rem;
+            }
+            
+            .aside-overlay,
+            .aside-panel {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .aside-panel {
+                width: 100%;
+                right: -100%;
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        
+        .form-question {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-family: 'Georgia', serif;
+            font-size: 0.95rem;
+            color: #4a5568;
+            transition: border-color 0.2s ease;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-section {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+        }
+        
+        .form-section-title {
+            color: #2d3748;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        /* Save/Import Buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 998;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-save {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-save:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-import {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .btn-import:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(72, 187, 120, 0.3);
+        }
+        
+        .btn-pdf {
+            background: #ed8936;
+            color: white;
+        }
+        
+        .btn-pdf:hover {
+            background: #dd6b20;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(237, 137, 54, 0.3);
+        }
+        
+        #importFile {
+            display: none;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1001;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            max-width: 400px;
+        }
+        
+        .notification.show {
+            display: flex;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .notification.success {
+            border-left: 4px solid #48bb78;
+        }
+        
+        .notification.error {
+            border-left: 4px solid #f56565;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .action-buttons {
+                bottom: 1rem;
+                right: 1rem;
+                flex-direction: column;
+            }
+            
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Death Preparation Guide</h1>
+            <p class="subtitle">A contemplative framework for documenting your final wishes</p>
+        </header>
+        
+        <div class="intro">
+            <p>Death preparation is one of the most profound practices we can undertake. Documenting your wishes is an act of both love and clarity—a gift to yourself and to those who will walk with you through your final transition.</p>
+            <p>This guide offers structure for this sacred work, drawing from both practical and contemplative dimensions.</p>
+        </div>
+        
+        <section class="section">
+            <h2>Starting Points</h2>
+            <p>What feels most alive for you to document first? Some people begin with:</p>
+            <ul>
+                <li><strong>The physical/medical decisions</strong> — advance directives, DNR wishes, pain management preferences</li>
+                <li><strong>The relational aspects</strong> — who you want present, what you want said or unsaid</li>
+                <li><strong>The spiritual/contemplative dimensions</strong> — practices to be done with you or for you</li>
+                <li><strong>The practical aftermath</strong> — body disposition, memorial wishes, estate considerations</li>
+            </ul>
+            <p>Consider whether you're drawn to start with the contemplative framework that would hold the dying process itself, or the practical scaffolding that allows that space to exist.</p>
+        </section>
+        
+        <div class="questions">
+            <h3>Questions to Hold</h3>
+            <p>You don't need to answer these now, but they might orient your documentation:</p>
+            <ul>
+                <li>What qualities do you want present in the room/space where you die?</li>
+                <li>Who has permission to make decisions if you cannot? (And do they truly understand your values?)</li>
+                <li>What practices or prayers matter most to you? Which traditions should be honored?</li>
+                <li>What do you want your last conscious communications to be about?</li>
+                <li>How do you want your body treated immediately after death?</li>
+            </ul>
+        </div>
+        
+        <section class="section">
+            <h2>A Layered Approach</h2>
+            <p>Consider creating your documentation in these layers, each building upon the last:</p>
+            
+            <div class="layers">
+                <div class="layer" onclick="openAside('layer1')">
+                    <span class="layer-number">1</span>
+                    <h3>Legal/Medical Essentials</h3>
+                    <p>Advance directive, healthcare proxy, POLST (Physician Orders for Life-Sustaining Treatment) if applicable. These are the legally binding documents that ensure your medical wishes are honored.</p>
+                </div>
+                
+                <div class="layer" onclick="openAside('layer2')">
+                    <span class="layer-number">2</span>
+                    <h3>Intimate Guidance</h3>
+                    <p>Instructions for those who will be with you—what helps, what harms. The subtle things that only you can communicate: the touch you find comforting, the words that bring peace, the presence that grounds you.</p>
+                </div>
+                
+                <div class="layer" onclick="openAside('layer3')">
+                    <span class="layer-number">3</span>
+                    <h3>Practice Instructions</h3>
+                    <p>The contemplative container you want held. Which mantras, which prayers, which practices from which traditions. The spiritual atmosphere you wish to die within.</p>
+                </div>
+                
+                <div class="layer" onclick="openAside('layer4')">
+                    <span class="layer-number">4</span>
+                    <h3>Aftermath Wishes</h3>
+                    <p>What happens to your body, memorial preferences, and the legacy you wish to leave. The practical expressions of your values after you've gone.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="note">
+            <p><strong>Remember:</strong> This is a living document. It can evolve as you do. What matters most is beginning the conversation—with yourself, with those you love, and with the reality of your mortality.</p>
+        </div>
+        
+        <section class="section">
+            <h2>Next Steps</h2>
+            <p>Choose one layer to begin with—the one that feels most urgent or most clear. You might start with the legal essentials for peace of mind, or with the contemplative dimensions that feel most alive in your practice.</p>
+            <p>There is no wrong place to begin. The practice itself is the preparation.</p>
+        </section>
+        
+        <footer>
+            <p>May you approach your death with the same presence and care<br>with which you have approached your life.</p>
+        </footer>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="btn btn-import" onclick="document.getElementById('importFile').click()">
+            <span>📥</span> Import
+        </button>
+        <button class="btn btn-save" onclick="saveData()" 
+                data-bs-toggle="tooltip" 
+                data-bs-placement="top" 
+                data-bs-title="Your privacy is sacred. We do not save any of your data on our servers. All data is saved as a JSON document on your device only.">
+            <span>💾</span> Save
+        </button>
+        <button class="btn btn-pdf" onclick="exportToPDF()">
+            <span>📄</span> Export PDF
+        </button>
+        <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+    </div>
+    
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationIcon"></span>
+        <span id="notificationMessage"></span>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="aside-overlay" id="asideOverlay" onclick="closeAside()"></div>
+    
+    <!-- Aside Panels -->
+    <div class="aside-panel" id="layer1Panel">
+        <div class="aside-header">
+            <h2 class="aside-title">Legal/Medical Essentials</h2>
+            <button class="close-btn" onclick="closeAside()">×</button>
+        </div>
+        <div class="aside-content">
+            <form id="layer1Form">
+                <div class="form-section">
+                    <h3 class="form-section-title">Life-Sustaining Treatment</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Under what circumstances do you want CPR performed?</label>
+                        <textarea class="form-textarea" name="cpr_circumstances" placeholder="Describe your wishes regarding CPR..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want mechanical ventilation if you cannot breathe on your own?</label>
+                        <textarea class="form-textarea" name="mechanical_ventilation" placeholder="Your wishes regarding mechanical ventilation..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What are your wishes regarding feeding tubes?</label>
+                        <textarea class="form-textarea" name="feeding_tubes" placeholder="Your wishes regarding feeding tubes..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there conditions under which you would want treatment withdrawn?</label>
+                        <textarea class="form-textarea" name="treatment_withdrawal" placeholder="Conditions for treatment withdrawal..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Pain Management & Comfort</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How do you prioritize comfort versus consciousness in your final days?</label>
+                        <textarea class="form-textarea" name="comfort_vs_consciousness" placeholder="Your priorities regarding comfort and consciousness..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What is your position on palliative sedation?</label>
+                        <textarea class="form-textarea" name="palliative_sedation" placeholder="Your position on palliative sedation..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there medications or treatments you refuse even for pain management?</label>
+                        <textarea class="form-textarea" name="refused_medications" placeholder="Medications or treatments you refuse..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want to remain as alert as possible, or prioritize pain relief?</label>
+                        <textarea class="form-textarea" name="alert_vs_pain_relief" placeholder="Your preference between alertness and pain relief..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Healthcare Decision-Makers</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who do you trust to make medical decisions if you cannot?</label>
+                        <input type="text" class="form-input" name="primary_healthcare_proxy" placeholder="Name of primary healthcare proxy">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Does this person truly understand your values and wishes?</label>
+                        <textarea class="form-textarea" name="proxy_understanding" placeholder="How you've ensured they understand your values..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Have you discussed specific scenarios with them?</label>
+                        <textarea class="form-textarea" name="discussed_scenarios" placeholder="Scenarios you've discussed together..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who is your secondary healthcare proxy if the first is unavailable?</label>
+                        <input type="text" class="form-input" name="secondary_healthcare_proxy" placeholder="Name of secondary healthcare proxy">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Specific Medical Scenarios</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What are your wishes if you have advanced dementia?</label>
+                        <textarea class="form-textarea" name="advanced_dementia" placeholder="Your wishes regarding advanced dementia..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What if you are in a persistent vegetative state?</label>
+                        <textarea class="form-textarea" name="vegetative_state" placeholder="Your wishes regarding persistent vegetative state..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What if recovery is possible but uncertain?</label>
+                        <textarea class="form-textarea" name="uncertain_recovery" placeholder="How to approach uncertain recovery situations..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What constitutes "meaningful quality of life" for you?</label>
+                        <textarea class="form-textarea" name="quality_of_life" placeholder="What meaningful quality of life means to you..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="note-section">
+                    <p><strong>Essential Documents:</strong></p>
+                    <p>• Advance Healthcare Directive (Living Will)</p>
+                    <p>• Healthcare Power of Attorney / Healthcare Proxy</p>
+                    <p>• POLST/MOLST Form (if applicable in your state)</p>
+                    <p>• DNR/DNI Orders</p>
+                    <p>• Organ Donation Preferences</p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="aside-panel" id="layer2Panel">
+        <div class="aside-header">
+            <h2 class="aside-title">Intimate Guidance</h2>
+            <button class="close-btn" onclick="closeAside()">×</button>
+        </div>
+        <div class="aside-content">
+            <form id="layer2Form">
+                <div class="form-section">
+                    <h3 class="form-section-title">Who Should Be Present</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who do you want present in your final hours?</label>
+                        <textarea class="form-textarea" name="who_present" placeholder="List the people you want present..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who should absolutely NOT be present?</label>
+                        <textarea class="form-textarea" name="who_not_present" placeholder="List anyone who should not be present..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there people you want to see for final conversations before you're actively dying?</label>
+                        <textarea class="form-textarea" name="final_conversations" placeholder="People for final conversations and what you want to say..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What boundaries need to be held with family members who might not respect your wishes?</label>
+                        <textarea class="form-textarea" name="family_boundaries" placeholder="Boundaries that need to be maintained..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Physical Comfort & Touch</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What kind of touch brings you comfort?</label>
+                        <textarea class="form-textarea" name="comforting_touch" placeholder="Describe touch that comforts you (hand-holding, stroking hair, massage, etc.)..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there types of touch that disturb you?</label>
+                        <textarea class="form-textarea" name="disturbing_touch" placeholder="Types of touch to avoid..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want to be touched at all, or do you prefer space?</label>
+                        <textarea class="form-textarea" name="touch_preference" placeholder="Your overall preference regarding touch..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What temperature do you prefer?</label>
+                        <textarea class="form-textarea" name="temperature_preference" placeholder="Temperature preferences (warm blankets, cool air, etc.)..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What scents, if any, are comforting to you?</label>
+                        <textarea class="form-textarea" name="comforting_scents" placeholder="Scents that bring you comfort..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Atmosphere & Environment</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want music? If so, what kind?</label>
+                        <textarea class="form-textarea" name="music_preferences" placeholder="Your music preferences..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What lighting feels right?</label>
+                        <textarea class="form-textarea" name="lighting_preferences" placeholder="Lighting preferences (dim, natural light, candles, etc.)..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want silence, or gentle background sounds?</label>
+                        <textarea class="form-textarea" name="sound_preferences" placeholder="Your preferences for sound/silence..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific scents you want in the room?</label>
+                        <textarea class="form-textarea" name="room_scents" placeholder="Specific scents for the room (incense, flowers, essential oils, etc.)..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What objects or images do you want visible?</label>
+                        <textarea class="form-textarea" name="visible_objects" placeholder="Objects or images you want to see..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Communication & Presence</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want people to talk to you, or prefer quiet presence?</label>
+                        <textarea class="form-textarea" name="talk_or_silence" placeholder="Your preference for conversation or silence..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific things you want or don't want said?</label>
+                        <textarea class="form-textarea" name="things_to_say" placeholder="Things you want said or not said..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How do you want people to respond if you're in distress?</label>
+                        <textarea class="form-textarea" name="distress_response" placeholder="How to respond to your distress..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want reassurance that it's okay to let go?</label>
+                        <textarea class="form-textarea" name="permission_to_die" placeholder="Your wishes regarding permission to let go..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there stories, memories, or truths you want spoken aloud?</label>
+                        <textarea class="form-textarea" name="stories_to_share" placeholder="Stories or memories you want shared..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">What Helps, What Harms</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What actions from others bring you peace?</label>
+                        <textarea class="form-textarea" name="peaceful_actions" placeholder="Actions that bring you peace..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What behaviors would cause you suffering?</label>
+                        <textarea class="form-textarea" name="harmful_behaviors" placeholder="Behaviors that would cause suffering..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How should your loved ones handle their own emotions in your presence?</label>
+                        <textarea class="form-textarea" name="emotional_boundaries" placeholder="How others should handle their emotions..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific conflicts or dynamics you want resolved before dying?</label>
+                        <textarea class="form-textarea" name="conflicts_to_resolve" placeholder="Conflicts or dynamics to resolve..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="note-section">
+                    <p><strong>Remember:</strong> These intimate details can be shared with your trusted circle separately from legal documents. Consider writing a personal letter to those who will be with you.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="aside-panel" id="layer3Panel">
+        <div class="aside-header">
+            <h2 class="aside-title">Practice Instructions</h2>
+            <button class="close-btn" onclick="closeAside()">×</button>
+        </div>
+        <div class="aside-content">
+            <form id="layer3Form">
+                <div class="form-section">
+                    <h3 class="form-section-title">Contemplative Practices</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Which meditation or contemplative practices are most important to you?</label>
+                        <textarea class="form-textarea" name="important_practices" placeholder="Your most important contemplative practices..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want specific practices done with you or for you?</label>
+                        <textarea class="form-textarea" name="practices_with_or_for" placeholder="Practices to be done with you or for you..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there mantras, prayers, or phrases you want recited?</label>
+                        <textarea class="form-textarea" name="mantras_prayers" placeholder="Specific mantras, prayers, or phrases..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want these practices done continuously or at specific times?</label>
+                        <textarea class="form-textarea" name="practice_timing" placeholder="When and how often practices should be done..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who is capable of holding these practices properly?</label>
+                        <textarea class="form-textarea" name="practice_holders" placeholder="People qualified to hold these practices..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Spiritual Traditions & Teachers</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Which spiritual traditions should be honored in your dying?</label>
+                        <textarea class="form-textarea" name="traditions_to_honor" placeholder="Spiritual traditions to be honored..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific teachers, preceptors, or spiritual friends you want contacted?</label>
+                        <textarea class="form-textarea" name="teachers_to_contact" placeholder="Teachers and spiritual friends to contact (include contact info if possible)..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want rituals from particular traditions performed?</label>
+                        <textarea class="form-textarea" name="specific_rituals" placeholder="Specific rituals to be performed..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How should conflicts between different traditions be navigated?</label>
+                        <textarea class="form-textarea" name="tradition_conflicts" placeholder="How to navigate conflicts between traditions..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there texts you want read aloud?</label>
+                        <textarea class="form-textarea" name="texts_to_read" placeholder="Texts to be read aloud..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Phowa & Transition Practices</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want phowa or other consciousness transference practices?</label>
+                        <textarea class="form-textarea" name="phowa_practices" placeholder="Your wishes regarding phowa or consciousness transference..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who is qualified to perform these practices for you?</label>
+                        <textarea class="form-textarea" name="phowa_practitioners" placeholder="Qualified practitioners for consciousness transference..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What visualizations or deity practices are meaningful to you?</label>
+                        <textarea class="form-textarea" name="visualizations_deities" placeholder="Meaningful visualizations or deity practices..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want practices continued after death? For how long?</label>
+                        <textarea class="form-textarea" name="post_death_practices" placeholder="Practices to continue after death and for how long..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific instructions for the immediate post-death period?</label>
+                        <textarea class="form-textarea" name="immediate_post_death" placeholder="Instructions for immediately after death..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Sacred Objects & Symbols</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What sacred objects do you want present?</label>
+                        <textarea class="form-textarea" name="sacred_objects" placeholder="Sacred objects (malas, statues, images, etc.)..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific relics or blessed items you want placed on your body?</label>
+                        <textarea class="form-textarea" name="relics_on_body" placeholder="Relics or blessed items to place on your body..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want a particular Buddha, deity, or spiritual figure image visible?</label>
+                        <textarea class="form-textarea" name="deity_images" placeholder="Images of Buddhas, deities, or spiritual figures..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there elements you want represented?</label>
+                        <textarea class="form-textarea" name="elemental_representation" placeholder="How you want elements (water, earth, fire, air) represented..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Guidance for Practitioners</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What instructions do you have for those holding the contemplative space?</label>
+                        <textarea class="form-textarea" name="practitioner_instructions" placeholder="Instructions for contemplative space holders..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How should they work with your energy and awareness as it changes?</label>
+                        <textarea class="form-textarea" name="energy_awareness_work" placeholder="How to work with changing energy and awareness..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What are signs that you need different practices or interventions?</label>
+                        <textarea class="form-textarea" name="practice_adjustment_signs" placeholder="Signs indicating need for different practices..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How long after death should the body remain undisturbed?</label>
+                        <textarea class="form-textarea" name="body_undisturbed_duration" placeholder="How long the body should remain undisturbed..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What practices should continue after you've stopped breathing?</label>
+                        <textarea class="form-textarea" name="practices_after_breathing_stops" placeholder="Practices to continue after breathing stops..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="note-section">
+                    <p><strong>Consider:</strong> Create a separate, detailed document for your spiritual support team with specific practice instructions, lineage prayers, and timing details. Include contact information for teachers who should be notified.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="aside-panel" id="layer4Panel">
+        <div class="aside-header">
+            <h2 class="aside-title">Aftermath Wishes</h2>
+            <button class="close-btn" onclick="closeAside()">×</button>
+        </div>
+        <div class="aside-content">
+            <form id="layer4Form">
+                <div class="form-section">
+                    <h3 class="form-section-title">Body Disposition</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want to be buried, cremated, or something else?</label>
+                        <textarea class="form-textarea" name="body_disposition" placeholder="Your wishes for body disposition (burial, cremation, green burial, aquamation, body donation, etc.)..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">If cremated, what should happen to your ashes?</label>
+                        <textarea class="form-textarea" name="ash_wishes" placeholder="What should happen to your ashes..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific locations where you want your remains?</label>
+                        <textarea class="form-textarea" name="remains_location" placeholder="Specific locations for your remains..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want your body present at any memorial service?</label>
+                        <textarea class="form-textarea" name="body_at_service" placeholder="Your wishes about body presence at memorial..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific funeral homes or services you prefer or want to avoid?</label>
+                        <textarea class="form-textarea" name="funeral_home_preferences" placeholder="Funeral home preferences or places to avoid..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Immediate Post-Death Care</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How long should your body remain undisturbed after death?</label>
+                        <textarea class="form-textarea" name="undisturbed_period" placeholder="How long your body should remain undisturbed..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want home funeral practices or traditional funeral home services?</label>
+                        <textarea class="form-textarea" name="funeral_type" placeholder="Home funeral or traditional funeral home services..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who should wash and prepare your body?</label>
+                        <textarea class="form-textarea" name="body_preparation" placeholder="Who should wash and prepare your body..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What clothing or shroud do you want to be dressed in?</label>
+                        <textarea class="form-textarea" name="burial_clothing" placeholder="Clothing or shroud preferences..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there objects that should be cremated or buried with you?</label>
+                        <textarea class="form-textarea" name="objects_with_body" placeholder="Objects to be cremated or buried with you..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Organ & Body Donation</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want to donate organs? Which ones?</label>
+                        <textarea class="form-textarea" name="organ_donation" placeholder="Your organ donation wishes..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want to donate your body to science?</label>
+                        <textarea class="form-textarea" name="body_donation" placeholder="Body donation to science wishes..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there religious or spiritual considerations around body donation?</label>
+                        <textarea class="form-textarea" name="donation_considerations" placeholder="Religious or spiritual considerations for donation..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Have you registered as an organ donor officially?</label>
+                        <textarea class="form-textarea" name="donor_registration" placeholder="Your organ donor registration status..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Type of Service</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want a funeral, memorial service, celebration of life, or nothing?</label>
+                        <textarea class="form-textarea" name="service_type" placeholder="Type of service you want..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Should it be religious, spiritual, secular, or mixed?</label>
+                        <textarea class="form-textarea" name="service_nature" placeholder="Religious, spiritual, secular, or mixed nature..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How soon after death should it occur?</label>
+                        <textarea class="form-textarea" name="service_timing" placeholder="Timing for the service..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Where should it be held?</label>
+                        <textarea class="form-textarea" name="service_location" placeholder="Location for the service..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who should officiate or facilitate?</label>
+                        <textarea class="form-textarea" name="service_officiant" placeholder="Who should officiate or facilitate..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Tone & Content</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What tone do you want?</label>
+                        <textarea class="form-textarea" name="service_tone" placeholder="Tone of the service (solemn, celebratory, contemplative, etc.)..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What music, if any, should be played?</label>
+                        <textarea class="form-textarea" name="service_music" placeholder="Music for the service..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific readings, poems, or texts you want shared?</label>
+                        <textarea class="form-textarea" name="service_readings" placeholder="Readings, poems, or texts to share..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want an open mic for people to share memories?</label>
+                        <textarea class="form-textarea" name="open_mic" placeholder="Your wishes about open mic sharing..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Should food or ritual be part of the gathering?</label>
+                        <textarea class="form-textarea" name="food_ritual" placeholder="Food or ritual preferences..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Who Should Be Included</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Should the service be private, by invitation, or open to all?</label>
+                        <textarea class="form-textarea" name="service_access" placeholder="Who should be able to attend..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific people who should or should not attend?</label>
+                        <textarea class="form-textarea" name="service_attendance" placeholder="People who should or should not attend..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who should speak or perform rituals?</label>
+                        <textarea class="form-textarea" name="service_speakers" placeholder="Who should speak or perform rituals..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How should distance or estranged family members be handled?</label>
+                        <textarea class="form-textarea" name="estranged_family" placeholder="How to handle distant or estranged family..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Digital Legacy</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What should happen to your social media accounts?</label>
+                        <textarea class="form-textarea" name="social_media" placeholder="Social media account wishes..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there digital files, photos, or projects you want preserved or deleted?</label>
+                        <textarea class="form-textarea" name="digital_files" placeholder="Digital files to preserve or delete..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Who should have access to your devices and passwords?</label>
+                        <textarea class="form-textarea" name="device_access" placeholder="Who should access your devices and passwords..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there online communities that should be notified?</label>
+                        <textarea class="form-textarea" name="online_communities" placeholder="Online communities to notify..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Personal Items</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there specific items you want to go to specific people?</label>
+                        <textarea class="form-textarea" name="item_distribution" placeholder="Specific items for specific people..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">What should happen to your spiritual objects and texts?</label>
+                        <textarea class="form-textarea" name="spiritual_items" placeholder="What should happen to spiritual objects and texts..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How should your creative work be handled?</label>
+                        <textarea class="form-textarea" name="creative_work" placeholder="How to handle your creative work..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there items that should be destroyed rather than distributed?</label>
+                        <textarea class="form-textarea" name="items_to_destroy" placeholder="Items that should be destroyed..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Final Messages</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Do you want to leave letters or messages for specific people?</label>
+                        <textarea class="form-textarea" name="final_letters" placeholder="Letters or messages for specific people..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Are there apologies or acknowledgments you want delivered?</label>
+                        <textarea class="form-textarea" name="apologies_acknowledgments" placeholder="Apologies or acknowledgments to deliver..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">Is there wisdom or guidance you want to pass on?</label>
+                        <textarea class="form-textarea" name="wisdom_to_share" placeholder="Wisdom or guidance to pass on..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-question">How should these messages be delivered?</label>
+                        <textarea class="form-textarea" name="message_delivery" placeholder="How messages should be delivered..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="note-section">
+                    <p><strong>Estate Planning:</strong> While not covered in detail here, ensure you also have a will, trust (if needed), power of attorney for finances, and clear beneficiary designations on all accounts. Consult with an estate planning attorney.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        let currentPanel = null;
+        
+        function openAside(panelId) {
+            // Close any currently open panel
+            if (currentPanel) {
+                closeAside();
+                // Wait for close animation before opening new panel
+                setTimeout(() => openPanel(panelId), 300);
+            } else {
+                openPanel(panelId);
+            }
+        }
+        
+        function openPanel(panelId) {
+            const panel = document.getElementById(panelId + 'Panel');
+            const overlay = document.getElementById('asideOverlay');
+            
+            if (panel) {
+                overlay.classList.add('active');
+                panel.classList.add('active');
+                currentPanel = panel;
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeAside() {
+            const overlay = document.getElementById('asideOverlay');
+            
+            if (currentPanel) {
+                overlay.classList.remove('active');
+                currentPanel.classList.remove('active');
+                currentPanel = null;
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && currentPanel) {
+                closeAside();
+            }
+        });
+        
+        // Auto-save to localStorage on input change
+        function autoSave() {
+            const forms = ['layer1Form', 'layer2Form', 'layer3Form', 'layer4Form'];
+            forms.forEach(formId => {
+                const form = document.getElementById(formId);
+                if (form) {
+                    const inputs = form.querySelectorAll('input, textarea');
+                    inputs.forEach(input => {
+                        input.addEventListener('input', () => {
+                            localStorage.setItem('deathPreparation_' + input.name, input.value);
+                        });
+                    });
+                }
+            });
+        }
+        
+        // Load saved data from localStorage
+        function loadSavedData() {
+            const forms = ['layer1Form', 'layer2Form', 'layer3Form', 'layer4Form'];
+            forms.forEach(formId => {
+                const form = document.getElementById(formId);
+                if (form) {
+                    const inputs = form.querySelectorAll('input, textarea');
+                    inputs.forEach(input => {
+                        const saved = localStorage.getItem('deathPreparation_' + input.name);
+                        if (saved) {
+                            input.value = saved;
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Collect all form data
+        function collectFormData() {
+            const data = {
+                metadata: {
+                    version: '1.0',
+                    documentType: 'deathPreparationGuide',
+                    lastModified: new Date().toISOString(),
+                    created: localStorage.getItem('deathPreparation_created') || new Date().toISOString()
+                },
+                layer1_legal_medical: {},
+                layer2_intimate_guidance: {},
+                layer3_practice_instructions: {},
+                layer4_aftermath_wishes: {}
+            };
+            
+            // Store creation date if not exists
+            if (!localStorage.getItem('deathPreparation_created')) {
+                localStorage.setItem('deathPreparation_created', data.metadata.created);
+            }
+            
+            // Collect Layer 1 data
+            const layer1Form = document.getElementById('layer1Form');
+            if (layer1Form) {
+                const inputs = layer1Form.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    if (input.value.trim()) {
+                        data.layer1_legal_medical[input.name] = input.value.trim();
+                    }
+                });
+            }
+            
+            // Collect Layer 2 data
+            const layer2Form = document.getElementById('layer2Form');
+            if (layer2Form) {
+                const inputs = layer2Form.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    if (input.value.trim()) {
+                        data.layer2_intimate_guidance[input.name] = input.value.trim();
+                    }
+                });
+            }
+            
+            // Collect Layer 3 data
+            const layer3Form = document.getElementById('layer3Form');
+            if (layer3Form) {
+                const inputs = layer3Form.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    if (input.value.trim()) {
+                        data.layer3_practice_instructions[input.name] = input.value.trim();
+                    }
+                });
+            }
+            
+            // Collect Layer 4 data
+            const layer4Form = document.getElementById('layer4Form');
+            if (layer4Form) {
+                const inputs = layer4Form.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    if (input.value.trim()) {
+                        data.layer4_aftermath_wishes[input.name] = input.value.trim();
+                    }
+                });
+            }
+            
+            return data;
+        }
+        
+        // Save data to JSON file
+        function saveData() {
+            const data = collectFormData();
+            const jsonString = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'death_preparation_' + new Date().toISOString().split('T')[0] + '.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showNotification('Data saved successfully!', 'success');
+        }
+        
+        // Import data from JSON file
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    // Validate the imported data
+                    if (!validateImportedData(data)) {
+                        showNotification('Invalid file format. Please upload a valid death preparation guide JSON file.', 'error');
+                        return;
+                    }
+                    
+                    // Populate forms with imported data
+                    populateForms(data);
+                    
+                    // Update localStorage
+                    if (data.metadata && data.metadata.created) {
+                        localStorage.setItem('deathPreparation_created', data.metadata.created);
+                    }
+                    
+                    showNotification('Data imported successfully!', 'success');
+                } catch (error) {
+                    showNotification('Error reading file. Please ensure it is a valid JSON file.', 'error');
+                    console.error('Import error:', error);
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset file input
+            event.target.value = '';
+        }
+        
+        // Validate imported data structure
+        function validateImportedData(data) {
+            // Check if it has the required structure
+            if (!data || typeof data !== 'object') return false;
+            
+            // Check for metadata
+            if (!data.metadata || data.metadata.documentType !== 'deathPreparationGuide') {
+                return false;
+            }
+            
+            // Check for at least one layer
+            const hasValidLayer = 
+                (data.layer1_legal_medical && typeof data.layer1_legal_medical === 'object') ||
+                (data.layer2_intimate_guidance && typeof data.layer2_intimate_guidance === 'object') ||
+                (data.layer3_practice_instructions && typeof data.layer3_practice_instructions === 'object') ||
+                (data.layer4_aftermath_wishes && typeof data.layer4_aftermath_wishes === 'object');
+            
+            return hasValidLayer;
+        }
+        
+        // Populate forms with imported data
+        function populateForms(data) {
+            // Clear existing data
+            const forms = ['layer1Form', 'layer2Form', 'layer3Form', 'layer4Form'];
+            forms.forEach(formId => {
+                const form = document.getElementById(formId);
+                if (form) {
+                    const inputs = form.querySelectorAll('input, textarea');
+                    inputs.forEach(input => {
+                        input.value = '';
+                    });
+                }
+            });
+            
+            // Populate Layer 1
+            if (data.layer1_legal_medical) {
+                populateLayer('layer1Form', data.layer1_legal_medical);
+            }
+            
+            // Populate Layer 2
+            if (data.layer2_intimate_guidance) {
+                populateLayer('layer2Form', data.layer2_intimate_guidance);
+            }
+            
+            // Populate Layer 3
+            if (data.layer3_practice_instructions) {
+                populateLayer('layer3Form', data.layer3_practice_instructions);
+            }
+            
+            // Populate Layer 4
+            if (data.layer4_aftermath_wishes) {
+                populateLayer('layer4Form', data.layer4_aftermath_wishes);
+            }
+        }
+        
+        // Helper function to populate a specific layer
+        function populateLayer(formId, layerData) {
+            const form = document.getElementById(formId);
+            if (!form) return;
+            
+            Object.keys(layerData).forEach(key => {
+                const input = form.querySelector(`[name="${key}"]`);
+                if (input) {
+                    input.value = layerData[key];
+                    // Save to localStorage
+                    localStorage.setItem('deathPreparation_' + key, layerData[key]);
+                }
+            });
+        }
+        
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            const icon = document.getElementById('notificationIcon');
+            const messageEl = document.getElementById('notificationMessage');
+            
+            notification.className = 'notification show ' + type;
+            icon.textContent = type === 'success' ? '✓' : '⚠';
+            messageEl.textContent = message;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+        
+        // Export to PDF
+        function exportToPDF() {
+            const data = collectFormData();
+            
+            // Check if there's any data to export
+            const hasData = 
+                Object.keys(data.layer1_legal_medical).length > 0 ||
+                Object.keys(data.layer2_intimate_guidance).length > 0 ||
+                Object.keys(data.layer3_practice_instructions).length > 0 ||
+                Object.keys(data.layer4_aftermath_wishes).length > 0;
+            
+            if (!hasData) {
+                showNotification('Please fill out at least one question before exporting to PDF.', 'error');
+                return;
+            }
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'letter'
+            });
+            
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const margin = 20;
+            const maxWidth = pageWidth - (margin * 2);
+            let yPosition = margin;
+            
+            // Helper function to add text with automatic page breaks
+            function addText(text, fontSize, isBold, isTitle = false) {
+                doc.setFontSize(fontSize);
+                doc.setFont('helvetica', isBold ? 'bold' : 'normal');
+                
+                const lines = doc.splitTextToSize(text, maxWidth);
+                
+                lines.forEach((line, index) => {
+                    if (yPosition + 10 > pageHeight - margin) {
+                        doc.addPage();
+                        yPosition = margin;
+                    }
+                    
+                    if (isTitle && index === 0) {
+                        yPosition += 5;
+                    }
+                    
+                    doc.text(line, margin, yPosition);
+                    yPosition += fontSize * 0.4;
+                });
+                
+                yPosition += 3;
+            }
+            
+            function addSection(title) {
+                if (yPosition + 20 > pageHeight - margin) {
+                    doc.addPage();
+                    yPosition = margin;
+                }
+                yPosition += 8;
+                addText(title, 14, true, true);
+                yPosition += 2;
+            }
+            
+            function addQuestion(question, answer) {
+                if (!answer || answer.trim() === '') return;
+                
+                addText(question, 11, true);
+                yPosition += 1;
+                addText(answer, 10, false);
+                yPosition += 4;
+            }
+            
+            // Title Page
+            doc.setFontSize(24);
+            doc.setFont('helvetica', 'bold');
+            const title = 'Death Preparation Document';
+            const titleWidth = doc.getTextWidth(title);
+            doc.text(title, (pageWidth - titleWidth) / 2, 60);
+            
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'normal');
+            const subtitle = 'A Living Document for Those Who Survive';
+            const subtitleWidth = doc.getTextWidth(subtitle);
+            doc.text(subtitle, (pageWidth - subtitleWidth) / 2, 70);
+            
+            doc.setFontSize(10);
+            const date = 'Last Updated: ' + new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const dateWidth = doc.getTextWidth(date);
+            doc.text(date, (pageWidth - dateWidth) / 2, 80);
+            
+            // Introduction
+            yPosition = 100;
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'italic');
+            const intro = 'This document contains my wishes for my death and the aftermath. It is a gift of clarity to those I love, created with care and intention. Please honor these wishes as an expression of my values and my love for you.';
+            const introLines = doc.splitTextToSize(intro, maxWidth - 20);
+            introLines.forEach(line => {
+                doc.text(line, margin + 10, yPosition);
+                yPosition += 5;
+            });
+            
+            // Start content on new page
+            doc.addPage();
+            yPosition = margin;
+            
+            // Layer 1: Legal/Medical Essentials
+            if (Object.keys(data.layer1_legal_medical).length > 0) {
+                addText('LAYER 1: LEGAL & MEDICAL ESSENTIALS', 16, true, true);
+                yPosition += 5;
+                
+                // Life-Sustaining Treatment
+                const hasLifeSustaining = 
+                    data.layer1_legal_medical.cpr_circumstances ||
+                    data.layer1_legal_medical.mechanical_ventilation ||
+                    data.layer1_legal_medical.feeding_tubes ||
+                    data.layer1_legal_medical.treatment_withdrawal;
+                
+                if (hasLifeSustaining) {
+                    addSection('Life-Sustaining Treatment');
+                    addQuestion('Under what circumstances do you want CPR performed?', data.layer1_legal_medical.cpr_circumstances);
+                    addQuestion('Do you want mechanical ventilation if you cannot breathe on your own?', data.layer1_legal_medical.mechanical_ventilation);
+                    addQuestion('What are your wishes regarding feeding tubes?', data.layer1_legal_medical.feeding_tubes);
+                    addQuestion('Are there conditions under which you would want treatment withdrawn?', data.layer1_legal_medical.treatment_withdrawal);
+                }
+                
+                // Pain Management
+                const hasPainManagement = 
+                    data.layer1_legal_medical.comfort_vs_consciousness ||
+                    data.layer1_legal_medical.palliative_sedation ||
+                    data.layer1_legal_medical.refused_medications ||
+                    data.layer1_legal_medical.alert_vs_pain_relief;
+                
+                if (hasPainManagement) {
+                    addSection('Pain Management & Comfort');
+                    addQuestion('How do you prioritize comfort versus consciousness in your final days?', data.layer1_legal_medical.comfort_vs_consciousness);
+                    addQuestion('What is your position on palliative sedation?', data.layer1_legal_medical.palliative_sedation);
+                    addQuestion('Are there medications or treatments you refuse even for pain management?', data.layer1_legal_medical.refused_medications);
+                    addQuestion('Do you want to remain as alert as possible, or prioritize pain relief?', data.layer1_legal_medical.alert_vs_pain_relief);
+                }
+                
+                // Healthcare Decision-Makers
+                const hasProxies = 
+                    data.layer1_legal_medical.primary_healthcare_proxy ||
+                    data.layer1_legal_medical.proxy_understanding ||
+                    data.layer1_legal_medical.discussed_scenarios ||
+                    data.layer1_legal_medical.secondary_healthcare_proxy;
+                
+                if (hasProxies) {
+                    addSection('Healthcare Decision-Makers');
+                    addQuestion('Primary healthcare proxy:', data.layer1_legal_medical.primary_healthcare_proxy);
+                    addQuestion('Does this person understand your values and wishes?', data.layer1_legal_medical.proxy_understanding);
+                    addQuestion('Scenarios discussed with healthcare proxy:', data.layer1_legal_medical.discussed_scenarios);
+                    addQuestion('Secondary healthcare proxy:', data.layer1_legal_medical.secondary_healthcare_proxy);
+                }
+                
+                // Medical Scenarios
+                const hasScenarios = 
+                    data.layer1_legal_medical.advanced_dementia ||
+                    data.layer1_legal_medical.vegetative_state ||
+                    data.layer1_legal_medical.uncertain_recovery ||
+                    data.layer1_legal_medical.quality_of_life;
+                
+                if (hasScenarios) {
+                    addSection('Specific Medical Scenarios');
+                    addQuestion('Wishes regarding advanced dementia:', data.layer1_legal_medical.advanced_dementia);
+                    addQuestion('Wishes regarding persistent vegetative state:', data.layer1_legal_medical.vegetative_state);
+                    addQuestion('Wishes if recovery is possible but uncertain:', data.layer1_legal_medical.uncertain_recovery);
+                    addQuestion('What constitutes meaningful quality of life:', data.layer1_legal_medical.quality_of_life);
+                }
+            }
+            
+            // Layer 2: Intimate Guidance
+            if (Object.keys(data.layer2_intimate_guidance).length > 0) {
+                doc.addPage();
+                yPosition = margin;
+                addText('LAYER 2: INTIMATE GUIDANCE', 16, true, true);
+                yPosition += 5;
+                
+                // Who Should Be Present
+                const hasPresence = 
+                    data.layer2_intimate_guidance.who_present ||
+                    data.layer2_intimate_guidance.who_not_present ||
+                    data.layer2_intimate_guidance.final_conversations ||
+                    data.layer2_intimate_guidance.family_boundaries;
+                
+                if (hasPresence) {
+                    addSection('Who Should Be Present');
+                    addQuestion('People I want present in my final hours:', data.layer2_intimate_guidance.who_present);
+                    addQuestion('People who should NOT be present:', data.layer2_intimate_guidance.who_not_present);
+                    addQuestion('Final conversations I want to have:', data.layer2_intimate_guidance.final_conversations);
+                    addQuestion('Boundaries with family members:', data.layer2_intimate_guidance.family_boundaries);
+                }
+                
+                // Physical Comfort
+                const hasComfort = 
+                    data.layer2_intimate_guidance.comforting_touch ||
+                    data.layer2_intimate_guidance.disturbing_touch ||
+                    data.layer2_intimate_guidance.touch_preference ||
+                    data.layer2_intimate_guidance.temperature_preference ||
+                    data.layer2_intimate_guidance.comforting_scents;
+                
+                if (hasComfort) {
+                    addSection('Physical Comfort & Touch');
+                    addQuestion('Touch that brings comfort:', data.layer2_intimate_guidance.comforting_touch);
+                    addQuestion('Touch to avoid:', data.layer2_intimate_guidance.disturbing_touch);
+                    addQuestion('Overall touch preference:', data.layer2_intimate_guidance.touch_preference);
+                    addQuestion('Temperature preferences:', data.layer2_intimate_guidance.temperature_preference);
+                    addQuestion('Comforting scents:', data.layer2_intimate_guidance.comforting_scents);
+                }
+                
+                // Atmosphere
+                const hasAtmosphere = 
+                    data.layer2_intimate_guidance.music_preferences ||
+                    data.layer2_intimate_guidance.lighting_preferences ||
+                    data.layer2_intimate_guidance.sound_preferences ||
+                    data.layer2_intimate_guidance.room_scents ||
+                    data.layer2_intimate_guidance.visible_objects;
+                
+                if (hasAtmosphere) {
+                    addSection('Atmosphere & Environment');
+                    addQuestion('Music preferences:', data.layer2_intimate_guidance.music_preferences);
+                    addQuestion('Lighting preferences:', data.layer2_intimate_guidance.lighting_preferences);
+                    addQuestion('Sound/silence preferences:', data.layer2_intimate_guidance.sound_preferences);
+                    addQuestion('Scents for the room:', data.layer2_intimate_guidance.room_scents);
+                    addQuestion('Objects or images to have visible:', data.layer2_intimate_guidance.visible_objects);
+                }
+                
+                // Communication
+                const hasCommunication = 
+                    data.layer2_intimate_guidance.talk_or_silence ||
+                    data.layer2_intimate_guidance.things_to_say ||
+                    data.layer2_intimate_guidance.distress_response ||
+                    data.layer2_intimate_guidance.permission_to_die ||
+                    data.layer2_intimate_guidance.stories_to_share;
+                
+                if (hasCommunication) {
+                    addSection('Communication & Presence');
+                    addQuestion('Preference for conversation or silence:', data.layer2_intimate_guidance.talk_or_silence);
+                    addQuestion('Things to say or not say:', data.layer2_intimate_guidance.things_to_say);
+                    addQuestion('How to respond to my distress:', data.layer2_intimate_guidance.distress_response);
+                    addQuestion('Reassurance about letting go:', data.layer2_intimate_guidance.permission_to_die);
+                    addQuestion('Stories or memories to share:', data.layer2_intimate_guidance.stories_to_share);
+                }
+                
+                // What Helps/Harms
+                const hasHelpHarm = 
+                    data.layer2_intimate_guidance.peaceful_actions ||
+                    data.layer2_intimate_guidance.harmful_behaviors ||
+                    data.layer2_intimate_guidance.emotional_boundaries ||
+                    data.layer2_intimate_guidance.conflicts_to_resolve;
+                
+                if (hasHelpHarm) {
+                    addSection('What Helps, What Harms');
+                    addQuestion('Actions that bring peace:', data.layer2_intimate_guidance.peaceful_actions);
+                    addQuestion('Behaviors that would cause suffering:', data.layer2_intimate_guidance.harmful_behaviors);
+                    addQuestion('How others should handle their emotions:', data.layer2_intimate_guidance.emotional_boundaries);
+                    addQuestion('Conflicts or dynamics to resolve:', data.layer2_intimate_guidance.conflicts_to_resolve);
+                }
+            }
+            
+            // Layer 3: Practice Instructions
+            if (Object.keys(data.layer3_practice_instructions).length > 0) {
+                doc.addPage();
+                yPosition = margin;
+                addText('LAYER 3: PRACTICE INSTRUCTIONS', 16, true, true);
+                yPosition += 5;
+                
+                // Contemplative Practices
+                const hasPractices = 
+                    data.layer3_practice_instructions.important_practices ||
+                    data.layer3_practice_instructions.practices_with_or_for ||
+                    data.layer3_practice_instructions.mantras_prayers ||
+                    data.layer3_practice_instructions.practice_timing ||
+                    data.layer3_practice_instructions.practice_holders;
+                
+                if (hasPractices) {
+                    addSection('Contemplative Practices');
+                    addQuestion('Most important practices:', data.layer3_practice_instructions.important_practices);
+                    addQuestion('Practices to be done with or for me:', data.layer3_practice_instructions.practices_with_or_for);
+                    addQuestion('Mantras, prayers, or phrases to recite:', data.layer3_practice_instructions.mantras_prayers);
+                    addQuestion('When practices should be done:', data.layer3_practice_instructions.practice_timing);
+                    addQuestion('Who can hold these practices:', data.layer3_practice_instructions.practice_holders);
+                }
+                
+                // Traditions & Teachers
+                const hasTraditions = 
+                    data.layer3_practice_instructions.traditions_to_honor ||
+                    data.layer3_practice_instructions.teachers_to_contact ||
+                    data.layer3_practice_instructions.specific_rituals ||
+                    data.layer3_practice_instructions.tradition_conflicts ||
+                    data.layer3_practice_instructions.texts_to_read;
+                
+                if (hasTraditions) {
+                    addSection('Spiritual Traditions & Teachers');
+                    addQuestion('Traditions to honor:', data.layer3_practice_instructions.traditions_to_honor);
+                    addQuestion('Teachers or spiritual friends to contact:', data.layer3_practice_instructions.teachers_to_contact);
+                    addQuestion('Specific rituals to perform:', data.layer3_practice_instructions.specific_rituals);
+                    addQuestion('Navigating conflicts between traditions:', data.layer3_practice_instructions.tradition_conflicts);
+                    addQuestion('Texts to read aloud:', data.layer3_practice_instructions.texts_to_read);
+                }
+                
+                // Phowa & Transition
+                const hasPhowa = 
+                    data.layer3_practice_instructions.phowa_practices ||
+                    data.layer3_practice_instructions.phowa_practitioners ||
+                    data.layer3_practice_instructions.visualizations_deities ||
+                    data.layer3_practice_instructions.post_death_practices ||
+                    data.layer3_practice_instructions.immediate_post_death;
+                
+                if (hasPhowa) {
+                    addSection('Phowa & Transition Practices');
+                    addQuestion('Consciousness transference practices:', data.layer3_practice_instructions.phowa_practices);
+                    addQuestion('Qualified practitioners:', data.layer3_practice_instructions.phowa_practitioners);
+                    addQuestion('Meaningful visualizations or deity practices:', data.layer3_practice_instructions.visualizations_deities);
+                    addQuestion('Practices to continue after death:', data.layer3_practice_instructions.post_death_practices);
+                    addQuestion('Immediate post-death instructions:', data.layer3_practice_instructions.immediate_post_death);
+                }
+                
+                // Sacred Objects
+                const hasSacredObjects = 
+                    data.layer3_practice_instructions.sacred_objects ||
+                    data.layer3_practice_instructions.relics_on_body ||
+                    data.layer3_practice_instructions.deity_images ||
+                    data.layer3_practice_instructions.elemental_representation;
+                
+                if (hasSacredObjects) {
+                    addSection('Sacred Objects & Symbols');
+                    addQuestion('Sacred objects to have present:', data.layer3_practice_instructions.sacred_objects);
+                    addQuestion('Relics or blessed items for my body:', data.layer3_practice_instructions.relics_on_body);
+                    addQuestion('Images of deities or spiritual figures:', data.layer3_practice_instructions.deity_images);
+                    addQuestion('Elemental representation:', data.layer3_practice_instructions.elemental_representation);
+                }
+                
+                // Practitioner Guidance
+                const hasPractitionerGuidance = 
+                    data.layer3_practice_instructions.practitioner_instructions ||
+                    data.layer3_practice_instructions.energy_awareness_work ||
+                    data.layer3_practice_instructions.practice_adjustment_signs ||
+                    data.layer3_practice_instructions.body_undisturbed_duration ||
+                    data.layer3_practice_instructions.practices_after_breathing_stops;
+                
+                if (hasPractitionerGuidance) {
+                    addSection('Guidance for Practitioners');
+                    addQuestion('Instructions for space holders:', data.layer3_practice_instructions.practitioner_instructions);
+                    addQuestion('Working with changing energy and awareness:', data.layer3_practice_instructions.energy_awareness_work);
+                    addQuestion('Signs for practice adjustments:', data.layer3_practice_instructions.practice_adjustment_signs);
+                    addQuestion('Body to remain undisturbed for:', data.layer3_practice_instructions.body_undisturbed_duration);
+                    addQuestion('Practices after breathing stops:', data.layer3_practice_instructions.practices_after_breathing_stops);
+                }
+            }
+            
+            // Layer 4: Aftermath Wishes
+            if (Object.keys(data.layer4_aftermath_wishes).length > 0) {
+                doc.addPage();
+                yPosition = margin;
+                addText('LAYER 4: AFTERMATH WISHES', 16, true, true);
+                yPosition += 5;
+                
+                // Body Disposition
+                const hasDisposition = 
+                    data.layer4_aftermath_wishes.body_disposition ||
+                    data.layer4_aftermath_wishes.ash_wishes ||
+                    data.layer4_aftermath_wishes.remains_location ||
+                    data.layer4_aftermath_wishes.body_at_service ||
+                    data.layer4_aftermath_wishes.funeral_home_preferences;
+                
+                if (hasDisposition) {
+                    addSection('Body Disposition');
+                    addQuestion('Body disposition method:', data.layer4_aftermath_wishes.body_disposition);
+                    addQuestion('What should happen to ashes:', data.layer4_aftermath_wishes.ash_wishes);
+                    addQuestion('Locations for remains:', data.layer4_aftermath_wishes.remains_location);
+                    addQuestion('Body present at memorial:', data.layer4_aftermath_wishes.body_at_service);
+                    addQuestion('Funeral home preferences:', data.layer4_aftermath_wishes.funeral_home_preferences);
+                }
+                
+                // Post-Death Care
+                const hasPostDeath = 
+                    data.layer4_aftermath_wishes.undisturbed_period ||
+                    data.layer4_aftermath_wishes.funeral_type ||
+                    data.layer4_aftermath_wishes.body_preparation ||
+                    data.layer4_aftermath_wishes.burial_clothing ||
+                    data.layer4_aftermath_wishes.objects_with_body;
+                
+                if (hasPostDeath) {
+                    addSection('Immediate Post-Death Care');
+                    addQuestion('Body to remain undisturbed for:', data.layer4_aftermath_wishes.undisturbed_period);
+                    addQuestion('Home funeral or traditional services:', data.layer4_aftermath_wishes.funeral_type);
+                    addQuestion('Who should prepare my body:', data.layer4_aftermath_wishes.body_preparation);
+                    addQuestion('Clothing or shroud:', data.layer4_aftermath_wishes.burial_clothing);
+                    addQuestion('Objects to include with body:', data.layer4_aftermath_wishes.objects_with_body);
+                }
+                
+                // Organ Donation
+                const hasDonation = 
+                    data.layer4_aftermath_wishes.organ_donation ||
+                    data.layer4_aftermath_wishes.body_donation ||
+                    data.layer4_aftermath_wishes.donation_considerations ||
+                    data.layer4_aftermath_wishes.donor_registration;
+                
+                if (hasDonation) {
+                    addSection('Organ & Body Donation');
+                    addQuestion('Organ donation wishes:', data.layer4_aftermath_wishes.organ_donation);
+                    addQuestion('Body donation to science:', data.layer4_aftermath_wishes.body_donation);
+                    addQuestion('Religious/spiritual considerations:', data.layer4_aftermath_wishes.donation_considerations);
+                    addQuestion('Donor registration status:', data.layer4_aftermath_wishes.donor_registration);
+                }
+                
+                // Service Type
+                const hasServiceType = 
+                    data.layer4_aftermath_wishes.service_type ||
+                    data.layer4_aftermath_wishes.service_nature ||
+                    data.layer4_aftermath_wishes.service_timing ||
+                    data.layer4_aftermath_wishes.service_location ||
+                    data.layer4_aftermath_wishes.service_officiant;
+                
+                if (hasServiceType) {
+                    addSection('Memorial Service Type');
+                    addQuestion('Type of service:', data.layer4_aftermath_wishes.service_type);
+                    addQuestion('Religious/spiritual/secular nature:', data.layer4_aftermath_wishes.service_nature);
+                    addQuestion('Timing after death:', data.layer4_aftermath_wishes.service_timing);
+                    addQuestion('Location:', data.layer4_aftermath_wishes.service_location);
+                    addQuestion('Who should officiate:', data.layer4_aftermath_wishes.service_officiant);
+                }
+                
+                // Tone & Content
+                const hasToneContent = 
+                    data.layer4_aftermath_wishes.service_tone ||
+                    data.layer4_aftermath_wishes.service_music ||
+                    data.layer4_aftermath_wishes.service_readings ||
+                    data.layer4_aftermath_wishes.open_mic ||
+                    data.layer4_aftermath_wishes.food_ritual;
+                
+                if (hasToneContent) {
+                    addSection('Service Tone & Content');
+                    addQuestion('Desired tone:', data.layer4_aftermath_wishes.service_tone);
+                    addQuestion('Music to play:', data.layer4_aftermath_wishes.service_music);
+                    addQuestion('Readings, poems, or texts:', data.layer4_aftermath_wishes.service_readings);
+                    addQuestion('Open mic for memories:', data.layer4_aftermath_wishes.open_mic);
+                    addQuestion('Food or ritual:', data.layer4_aftermath_wishes.food_ritual);
+                }
+                
+                // Who to Include
+                const hasAttendance = 
+                    data.layer4_aftermath_wishes.service_access ||
+                    data.layer4_aftermath_wishes.service_attendance ||
+                    data.layer4_aftermath_wishes.service_speakers ||
+                    data.layer4_aftermath_wishes.estranged_family;
+                
+                if (hasAttendance) {
+                    addSection('Service Attendance');
+                    addQuestion('Access (private/invitation/open):', data.layer4_aftermath_wishes.service_access);
+                    addQuestion('Specific attendance wishes:', data.layer4_aftermath_wishes.service_attendance);
+                    addQuestion('Who should speak or perform rituals:', data.layer4_aftermath_wishes.service_speakers);
+                    addQuestion('Handling estranged family:', data.layer4_aftermath_wishes.estranged_family);
+                }
+                
+                // Digital Legacy
+                const hasDigital = 
+                    data.layer4_aftermath_wishes.social_media ||
+                    data.layer4_aftermath_wishes.digital_files ||
+                    data.layer4_aftermath_wishes.device_access ||
+                    data.layer4_aftermath_wishes.online_communities;
+                
+                if (hasDigital) {
+                    addSection('Digital Legacy');
+                    addQuestion('Social media accounts:', data.layer4_aftermath_wishes.social_media);
+                    addQuestion('Digital files to preserve or delete:', data.layer4_aftermath_wishes.digital_files);
+                    addQuestion('Device and password access:', data.layer4_aftermath_wishes.device_access);
+                    addQuestion('Online communities to notify:', data.layer4_aftermath_wishes.online_communities);
+                }
+                
+                // Personal Items
+                const hasItems = 
+                    data.layer4_aftermath_wishes.item_distribution ||
+                    data.layer4_aftermath_wishes.spiritual_items ||
+                    data.layer4_aftermath_wishes.creative_work ||
+                    data.layer4_aftermath_wishes.items_to_destroy;
+                
+                if (hasItems) {
+                    addSection('Personal Items');
+                    addQuestion('Items for specific people:', data.layer4_aftermath_wishes.item_distribution);
+                    addQuestion('Spiritual objects and texts:', data.layer4_aftermath_wishes.spiritual_items);
+                    addQuestion('Creative work:', data.layer4_aftermath_wishes.creative_work);
+                    addQuestion('Items to destroy:', data.layer4_aftermath_wishes.items_to_destroy);
+                }
+                
+                // Final Messages
+                const hasMessages = 
+                    data.layer4_aftermath_wishes.final_letters ||
+                    data.layer4_aftermath_wishes.apologies_acknowledgments ||
+                    data.layer4_aftermath_wishes.wisdom_to_share ||
+                    data.layer4_aftermath_wishes.message_delivery;
+                
+                if (hasMessages) {
+                    addSection('Final Messages');
+                    addQuestion('Letters for specific people:', data.layer4_aftermath_wishes.final_letters);
+                    addQuestion('Apologies or acknowledgments:', data.layer4_aftermath_wishes.apologies_acknowledgments);
+                    addQuestion('Wisdom to pass on:', data.layer4_aftermath_wishes.wisdom_to_share);
+                    addQuestion('How messages should be delivered:', data.layer4_aftermath_wishes.message_delivery);
+                }
+            }
+            
+            // Final Page
+            doc.addPage();
+            yPosition = pageHeight / 2 - 20;
+            doc.setFontSize(11);
+            doc.setFont('helvetica', 'italic');
+            const closing = 'This document represents my wishes, created with care and intention.\nMay it bring clarity and peace to those I love.';
+            const closingLines = doc.splitTextToSize(closing, maxWidth - 40);
+            closingLines.forEach(line => {
+                const lineWidth = doc.getTextWidth(line);
+                doc.text(line, (pageWidth - lineWidth) / 2, yPosition);
+                yPosition += 7;
+            });
+            
+            // Save the PDF
+            const filename = 'Death_Preparation_' + new Date().toISOString().split('T')[0] + '.pdf';
+            doc.save(filename);
+            
+            showNotification('PDF exported successfully!', 'success');
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedData();
+            autoSave();
+            
+            // Initialize Bootstrap tooltips
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+    
+    <!-- Bootstrap JS for Tooltips -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- jsPDF Library for PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
